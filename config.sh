@@ -55,6 +55,7 @@ print_modname() {
 # This is an example
 REPLACE="
 /system/vendor/etc/wifi
+Testsss 
 /system/data/misc/wifi
 "
 
