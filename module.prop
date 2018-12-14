@@ -4,4 +4,4 @@ version=v1
 versionCode=1
 author=Pro4TLZZ
 description=This module enables WiFi roaming
-minMagisk=18100
+minMagisk=1800
