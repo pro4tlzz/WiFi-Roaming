@@ -54,9 +54,8 @@ print_modname() {
 
 # This is an example
 REPLACE="
-/root/vendor/etc/wifi
-/root/etc/wifi
-/root/data/misc/wifi
+/vendor/etc/wifi
+/data/misc/wifi
 "
 
 # Construct your own list here, it will override the example above
