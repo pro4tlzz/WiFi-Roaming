@@ -41,7 +41,7 @@ LATESTARTSERVICE=false
 
 print_modname() {
   ui_print "*******************************"
-  ui_print "     Magisk Module Template    "
+  ui_print "     WiFi Roaming   "
   ui_print "*******************************"
 }
 
@@ -54,10 +54,9 @@ print_modname() {
 
 # This is an example
 REPLACE="
-/system/app/Youtube
-/system/priv-app/SystemUI
-/system/priv-app/Settings
-/system/framework
+/root/vendor/etc/wifi
+/root/etc/wifi
+/root/data/misc/wifi
 "
 
 # Construct your own list here, it will override the example above

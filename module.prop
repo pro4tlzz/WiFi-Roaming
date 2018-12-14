@@ -1,7 +1,7 @@
-id=template
-name=Template Module
+id=w_Roam
+name=WiFi Roaming
 version=v1
 versionCode=1
-author=topjohnwu
-description=A short description
-minMagisk=17000
+author=Pro4TLZZ
+description=This module enables WiFi roaming
+minMagisk=18100
