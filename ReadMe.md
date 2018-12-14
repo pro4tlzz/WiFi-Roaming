@@ -1,1 +1,1 @@
-*This module runs a WiFi scan when signal is low*
+#This module runs a WiFi scan when signal is low
