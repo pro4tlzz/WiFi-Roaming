@@ -1,1 +1,1 @@
-Write something here
+*This module runs a WiFi scan when signal is low*
