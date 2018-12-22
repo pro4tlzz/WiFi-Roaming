@@ -136,7 +136,57 @@ $POSTFSDATA && cp -af $INSTALLER/common/post-fs-data.sh $MODPATH/post-fs-data.sh
 # service mode scripts
 $LATESTARTSERVICE && cp -af $INSTALLER/common/service.sh $MODPATH/service.sh
 
-ui_print "- Setting permissions"
+Cfg_Migration(){
+mkdir -p $MODPATH$CFGPATH
+if [ -f /sbin/.core/magisk/mirror$CFGPATH$CFG ]; then
+  cp -af /sbin/.core/mirror$CFGPATH$CFG $MODPATH$CFGPATH$CFG
+else
+  cp -af $CFGPATH$CFG $MODPATH$CFGPATH$CFG
+fi
+
+ui_print"- modify files"
+
+sed -i 's/gRoamIntraBand=0/gRoamIntraBandz=1/g;s/gRoamingTime=0/gRoamingTime=1/g;s/#gRoamIntraBand=1/gRoamIntraBandz=1/g;s/#gRoamingTime=1/gRoamingTime=1/g' $MODPATH$CFGPATH$CFG
+
+if [ -z $(grep gRoamIntraBand $MODPATH$CFGPATH$CFG) ]; then
+  sed -i 's/^END$/gRoamIntraBrand=1\nEND/g' $MODPATH$CFGPATH$CFG
+fi
+
+if [ -z $(grep gRoamingTime $MODPATH$CFGPATH$CFG) ]; then
+  sed -i 's/^END$/gRoamingTime=1\nEND/g' $MODPATH$CFGPATH$CFG
+fi
+
+ui_print "- mount cfg"
+
+
+CFG=WCNSS_qcom_cfg.ini
+#move config depending on device?
+if [ -f /system/etc/wifi/$CFG ]; then
+  CFGPATH=/system/etc/wifi/
+  Cfg_Migration
+elif [ -f /system/vendor/etc/wifi/$CFG ]; then
+  CFGPATH=/system/vendor/etc/wifi/
+  Cfg_Migration
+elif [ -f /system/etc/firmware/wlan/qca_cld/$CFG ]; then
+  CFGPATH=/system/etc/firmware/wlan/qca_cld/
+  Cfg_Migration
+elif [ -f /system/vendor/firmware/wlan/qca_cld/$CFG ]; then
+  CFGPATH=/system/vendor/firmware/wlan/qca_cld/
+  Cfg_Migration
+elif [ -f /system/etc/firmware/wlan/prima/$CFG ]; then
+  CFGPATH=/system/etc/firmware/wlan/prima/
+  Cfg_Migration
+elif [ -f /system/vendor/firmware/wlan/prima/$CFG ]; then
+  CFGPATH=/system/vendor/firmware/wlan/prima/
+  Cfg_Migration
+else 
+  ui_print "- Migration FAILED. "
+  ui_print "  Please report it to the developer with"
+  ui_print "  your WCNSS_qcom_cfg.ini path."
+fi
+
+
+ui_print "- perm set"
 set_permissions
 
 ##########################################################################################
