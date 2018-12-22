@@ -146,7 +146,7 @@ fi
 
 ui_print"- modify files"
 
-sed -i 's/gRoamIntraBand=0/gRoamIntraBandz=1/g;s/gRoamingTime=0/gRoamingTime=1/g;s/#gRoamIntraBand=1/gRoamIntraBandz=1/g;s/#gRoamingTime=1/gRoamingTime=1/g' $MODPATH$CFGPATH$CFG
+sed -i 's/gRoamIntraBand=0/gRoamIntraBand=1/g;s/gRoamingTime=0/gRoamingTime=1/g;s/#gRoamIntraBand=1/gRoamIntraBand=1/g;s/#gRoamingTime=1/gRoamingTime=1/g' $MODPATH$CFGPATH$CFG
 
 if [ -z $(grep gRoamIntraBand $MODPATH$CFGPATH$CFG) ]; then
   sed -i 's/^END$/gRoamIntraBrand=1\nEND/g' $MODPATH$CFGPATH$CFG
